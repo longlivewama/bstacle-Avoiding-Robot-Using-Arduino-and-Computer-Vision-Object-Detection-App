@@ -241,10 +241,6 @@ Then open the provided local URL in your browser.
 
 This project merges robotics and AI to build an autonomous robot capable of environmental awareness through sensors and vision — a practical step toward intelligent robotic systems.
 
----
 
-## License
 
-This project is open-source under the MIT License.
-Feel free to use, modify, and share it with attribution.
 
