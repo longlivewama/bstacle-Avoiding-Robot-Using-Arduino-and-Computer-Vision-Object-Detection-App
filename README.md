@@ -1,12 +1,14 @@
+# Obstacle Avoiding Robot Using Arduino and Computer Vision Object Detection App
 
-````markdown
-# Obstacle Avoiding Robot Using Arduino & Computer Vision Object Detection App
+<p align="center">
+  <img src="Obstacle%20Avoiding%20Robot%20Using%20Arduino.png" alt="Obstacle Avoiding Robot Using Arduino" width="90%" style="border-radius: 10px;"/>
+</p>
 
-![Obstacle Avoiding Robot Using Arduino](Obstacle%20Avoiding%20Robot%20Using%20Arduino.jpg)
+
 
 This project combines embedded robotics and AI-based computer vision to demonstrate two powerful applications of automation:
 
-1. An Arduino-based autonomous obstacle-avoiding robot that navigates its surroundings using an ultrasonic sensor.
+1. An Arduino-based autonomous obstacle-avoiding robot that navigates its surroundings using an ultrasonic sensor.  
 2. A YOLO Object Detection Streamlit App for real-time image and video object detection powered by TensorRT and GPU acceleration.
 
 ---
@@ -22,6 +24,7 @@ This project combines embedded robotics and AI-based computer vision to demonstr
 * [Applications](#applications)
 * [YOLO Object Detection Streamlit App](#yolo-object-detection-streamlit-app)
   * [Features](#features)
+  * [Sample Code](#sample-code-yolo--streamlit--tensorrt)
   * [Requirements](#requirements)
   * [Installation](#installation)
   * [How to Run](#how-to-run)
@@ -33,7 +36,8 @@ This project combines embedded robotics and AI-based computer vision to demonstr
 
 ## Introduction
 
-The Obstacle Avoiding Robot is an autonomous system that can detect and avoid obstacles without human intervention. Using an Arduino Uno, ultrasonic sensor (HC-SR04), and L298N motor driver, the robot intelligently changes direction when it detects nearby objects.
+The Obstacle Avoiding Robot is an autonomous system that can detect and avoid obstacles without human intervention.  
+Using an Arduino Uno, ultrasonic sensor (HC-SR04), and L298N motor driver, the robot intelligently changes direction when it detects nearby objects.  
 
 The project also includes an advanced YOLO-based Object Detection Streamlit application, showcasing the AI side of robotics — detecting objects from images and videos in real-time using GPU acceleration.
 
@@ -42,7 +46,7 @@ The project also includes an advanced YOLO-based Object Detection Streamlit appl
 ## Objectives
 
 1. Build an autonomous robot capable of avoiding obstacles.  
-2. Demonstrate the integration of sensors, actuators, and microcontrollers using Arduino.  
+2. Demonstrate integration of sensors, actuators, and microcontrollers using Arduino.  
 3. Provide hands-on experience in motor control, sensor interfacing, and AI-powered computer vision.
 
 ---
@@ -63,7 +67,7 @@ The project also includes an advanced YOLO-based Object Detection Streamlit appl
 
 ## Circuit Diagram & Connections
 
-### Ultrasonic Sensor:
+### Ultrasonic Sensor
 
 | Pin  | Connection |
 | ---- | ---------- |
@@ -71,7 +75,7 @@ The project also includes an advanced YOLO-based Object Detection Streamlit appl
 | Trig | Pin 4      |
 | Echo | Pin 2      |
 
-### Motor Driver (L298N):
+### Motor Driver (L298N)
 
 | Pin                  | Connection    |
 | -------------------- | ------------- |
@@ -126,42 +130,40 @@ void loop() {
     digitalWrite(11, 0);
   }
 }
-````
 
 ---
 
 ## Code Explanation
 
 * **Initialization:** Sets up sensor and motor pins.
-* **Distance Calculation:** Uses the ultrasonic sensor with the formula
-  `distance = duration × 0.034 / 2`.
-* **Decision Logic:**
+* **Distance Calculation:** Uses ultrasonic sensor with `distance = duration × 0.034 / 2`.
+* **Logic:**
 
   * If distance ≥ 20 cm → Move forward.
-  * If distance < 20 cm → Turn to avoid the obstacle.
-* **Motor Control:** The L298N motor driver uses PWM to control motor direction and speed.
+  * If distance < 20 cm → Turn to avoid obstacles.
+* **Motor Control:** Controlled by L298N driver using PWM for speed and direction.
 
 ---
 
 ## Applications
 
-* Autonomous Vehicles: Core logic for collision avoidance.
-* Robotics Education: Great beginner project for Arduino & robotics.
-* Home Automation: Adaptable for robotic vacuum cleaners and lawn mowers.
+* Autonomous Vehicles: Collision avoidance foundation.
+* Robotics Education: Ideal beginner Arduino project.
+* Home Automation: Adaptable for robotic cleaners and lawn mowers.
 
 ---
 
 ## YOLO Object Detection Streamlit App
 
-This app demonstrates real-time object detection using YOLO + TensorRT in Streamlit, with full GPU acceleration support.
+This app demonstrates real-time object detection using YOLO + TensorRT in Streamlit with GPU acceleration.
 
 ### Features
 
-* Detects objects in images and videos.
-* Uses TensorRT engine for optimized inference speed.
-* GPU memory and inference time monitoring.
-* Download annotated output images/videos.
-* Multi-threaded processing for large videos.
+* Real-time object detection in images/videos.
+* Optimized inference with TensorRT.
+* GPU memory and inference time tracking.
+* Download annotated outputs.
+* Multi-threaded video processing.
 
 ---
 
@@ -184,7 +186,6 @@ def load_model():
     return model
 
 model = load_model()
-
 conf_threshold = st.sidebar.slider("Confidence", 0.0, 1.0, 0.25, 0.05)
 uploaded_file = st.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
 
@@ -195,40 +196,19 @@ if uploaded_file:
     st.image(annotated_image, caption="Detected Objects")
 ```
 
----
-
-## Requirements
-
-* Python 3.9+
-* CUDA-enabled GPU
-* Installed libraries:
-
-  ```bash
-  pip install streamlit ultralytics torch torchvision torchaudio pillow opencv-python
-  ```
-
----
-
 ## Installation
 
-1. Clone this repository:
+```bash
+git clone https://github.com/yourusername/Obstacle-Avoiding-Robot-Arduino-YOLO.git
+cd Obstacle-Avoiding-Robot-Arduino-YOLO
+pip install -r requirements.txt
+```
 
-   ```bash
-   git clone https://github.com/yourusername/Obstacle-Avoiding-Robot-Arduino-YOLO.git
-   cd Obstacle-Avoiding-Robot-Arduino-YOLO
-   ```
+Update your YOLO TensorRT model path in `app.py`:
 
-2. Set up the environment:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Ensure your YOLO TensorRT model path is correct inside `app.py`:
-
-   ```python
-   MODEL_PATH = "path/to/best.engine"
-   ```
+```python
+MODEL_PATH = "path/to/best.engine"
+```
 
 ---
 
@@ -237,7 +217,7 @@ if uploaded_file:
 ### Run the Arduino Robot
 
 1. Assemble components as per the circuit diagram.
-2. Upload Arduino code using the Arduino IDE.
+2. Upload Arduino code via Arduino IDE.
 3. Power the robot to start autonomous navigation.
 
 ### Run the Streamlit App
@@ -246,20 +226,20 @@ if uploaded_file:
 streamlit run app.py
 ```
 
-Then open the local URL in your browser.
+Then open the provided local URL in your browser.
 
 ---
 
 ## Output
 
-* Robot autonomously avoids obstacles.
+* The robot autonomously avoids obstacles.
 * YOLO app detects and annotates objects in real time.
 
 ---
 
 ## Conclusion
 
-The project merges robotics and AI to build an autonomous robot capable of environmental awareness through sensors and computer vision — a step toward intelligent robotic systems.
+This project merges robotics and AI to build an autonomous robot capable of environmental awareness through sensors and vision — a practical step toward intelligent robotic systems.
 
 ---
 
@@ -268,9 +248,3 @@ The project merges robotics and AI to build an autonomous robot capable of envir
 This project is open-source under the MIT License.
 Feel free to use, modify, and share it with attribution.
 
-```
-
----
-
-هل تحب أضيف بعد الكود ده كمان قسم **“Demo Images”** زي اللي قبل، فيه الصورتين `1.jpg` و `2.jpg` جنب بعض في النص داخل README؟
-```
