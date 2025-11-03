@@ -1,0 +1,15 @@
+* **Python:** 3.9 or higher  
+* **CUDA-enabled GPU (optional):** for TensorRT & YOLO acceleration  
+
+### Required Python Libraries
+
+Install the following packages one by one:
+
+```bash
+pip install streamlit  
+pip install ultralytics  
+pip install torch  
+pip install torchvision  
+pip install torchaudio  
+pip install pillow  
+pip install opencv-python  
